@@ -1,0 +1,101 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Mawira - Meu Perfil</title>
+    <link rel="stylesheet" href="style.css">
+    <link rel="stylesheet" href="perfil.css"> <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+    <header class="header">
+        <div class="container">
+            <h1 class="logo"><a href="index.html" id="logoMawira">Mawira</a></h1>
+            <nav class="nav">
+                <button class="hamburger-menu" aria-label="Abrir Menu">
+                    <i class="fas fa-bars"></i>
+                </button>
+                <ul class="nav-list">
+                    <li><a href="index.html">Início</a></li>
+                    <li><a href="quizzes.html">Quizzes</a></li>
+                    <li><a href="blog.html">Blog</a></li>
+                    <li><a href="contact.html">Contato</a></li>
+                    <li id="authLinkContainer"></li>
+                </ul>
+            </nav>
+        </div>
+    </header>
+
+    <main class="profile-page-wrapper">
+        <section class="profile-card">
+            <div class="profile-header">
+                <div class="profile-avatar-container">
+                    <img id="profileAvatarImg" src="https://via.placeholder.com/140/8B4513/FFFFFF?text=MP" alt="Avatar do Usuário" class="profile-avatar">
+                    <label for="avatarUpload" class="upload-icon" title="Carregar nova foto de perfil">
+                        <i class="fas fa-camera"></i>
+                        <input type="file" id="avatarUpload" accept="image/*" style="display: none;">
+                    </label>
+                </div>
+                
+                <div class="profile-name-email">
+                    <h2 id="userNameDisplay">Olá, Usuário!</h2> 
+                    <input type="text" id="userNameInput" value="Usuário" style="display:none;">
+                    <button id="editUserNameButton" class="btn btn-text" title="Editar Nome">
+                        <i class="fas fa-edit"></i>
+                    </button>
+                </div>
+                
+                <p id="userEmailDisplay" class="user-email">usuario@email.com</p>
+                <a href="#" id="changeEmailLink" class="link-action">Alterar E-mail</a>
+            </div>
+
+            <div class="info-section personal-info">
+                <h3>Minhas Informações</h3>
+                <div class="info-item">
+                    <label for="hairTypeSelect">Tipo de Cabelo Salvo</label>
+                    <select id="hairTypeSelect" disabled>
+                        <option value="">Ainda não preenchido</option>
+                        <option value="liso">Liso (1A, 1B, 1C)</option>
+                        <option value="ondulado">Ondulado (2A, 2B, 2C)</option>
+                        <option value="cacheado">Cacheado (3A, 3B, 3C)</option>
+                        <option value="crespo">Crespo (4A, 4B, 4C)</option>
+                    </select>
+                    <button id="completeQuizButton" class="btn btn-secondary">Fazer/Refazer o Quiz</button>
+                </div>
+                
+                <div class="info-item">
+                    <label>Rotina Capilar Personalizada</label>
+                    <p id="hairRoutine" class="dynamic-info-text">Sua rotina capilar aparecerá aqui após você completar um quiz.</p>
+                </div>
+            </div>
+
+            <div class="info-section quiz-history">
+                <h3>Histórico de Quizzes</h3>
+                <ul id="quizHistoryList">
+                    <li class="no-history-message">Nenhum quiz realizado ainda.</li>
+                </ul>
+                <button id="viewAllQuizzesButton" class="btn btn-tertiary">Ver Todos os Quizzes</button>
+            </div>
+
+            <div class="info-section account-management">
+                <h3>Gerenciamento da Conta</h3>
+                <div class="profile-actions">
+                    <button id="editProfileDetailsButton" class="btn btn-primary">Editar Perfil</button>
+                    <button id="changePasswordButton" class="btn btn-outline-primary">Alterar Senha</button>
+                    <button id="logoutButton" class="btn btn-danger">Sair</button>
+                </div>
+            </div>
+        </section>
+    </main>
+
+    <footer class="footer">
+        <div class="container">
+            <p>&copy; 2025 Mawira. Todos os direitos reservados.</p>
+        </div>
+    </footer>
+
+    <script src="script.js"></script>
+    <script src="auth-nav.js"></script>
+    <script src="perfil.js"></script>
+</body>
+</html>

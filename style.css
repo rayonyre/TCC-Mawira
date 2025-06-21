@@ -1,0 +1,517 @@
+/* Variáveis CSS para facilitar a manutenção */
+:root {
+    --primary-color: #483528; /* Marrom de destaque (Botões e detalhes) */
+    --secondary-color: #D2B48C; /* Cor complementar (BurlyWood) - Mantida se ainda desejar */
+    --background-color: #F7EBDD; /* Bege de fundo */
+    --text-color: #333; /* Cor do texto principal para fundos claros */
+    --light-text-color: #f8f8f8; /* Cor de texto para fundos escuros */
+    --header-height: 80px; /* Altura do cabeçalho */
+}
+
+/* Reset básico e tipografia */
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    /* Fontes: Poppins ou Lato para corpo e títulos. */
+    font-family: 'Poppins', 'Lato', sans-serif; 
+    line-height: 1.6;
+    color: var(--text-color);
+    background-color: var(--background-color);
+}
+
+.container {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+a {
+    text-decoration: none;
+    color: var(--primary-color);
+}
+
+ul {
+    list-style: none;
+}
+
+/* Botões */
+.btn {
+    display: inline-block;
+    background: var(--primary-color);
+    color: var(--light-text-color); /* Texto claro sobre fundo marrom */
+    padding: 12px 25px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: background-color 0.3s ease, transform 0.2s ease; /* Animação hover */
+}
+
+.btn:hover {
+    background: darken(var(--primary-color), 10%); /* Ajuste de tom para hover */
+    transform: scale(1.02); /* Pequeno aumento de escala no hover */
+}
+
+.btn-primary {
+    font-size: 1.2rem;
+    padding: 15px 30px;
+    margin-top: 20px;
+}
+
+/* Header (Estilos Globais) */
+.header {
+    background: #fff; /* Fundo branco */
+    color: var(--text-color);
+    height: var(--header-height);
+    display: flex;
+    align-items: center;
+    position: fixed;
+    width: 100%;
+    top: 0;
+    left: 0;
+    z-index: 1000;
+    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+}
+
+.header .container {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    width: 100%;
+}
+
+.logo a {
+    /* Logo: Fonte Precious (assumindo que será importada via @font-face ou link) */
+    font-family: 'Precious', cursive; /* Substitua 'Precious' pela fonte real */
+    font-size: 2.2rem;
+    font-weight: bold;
+    color: var(--primary-color);
+    text-transform: uppercase;
+    letter-spacing: 1px;
+}
+
+.nav-list {
+    display: flex;
+    gap: 25px;
+    align-items: center;
+}
+
+.nav-list a {
+    color: var(--text-color);
+    font-weight: 500;
+    font-size: 1.05rem;
+    transition: color 0.3s ease;
+}
+
+.nav-list a:hover,
+.nav-list a.active {
+    color: var(--primary-color);
+}
+
+/* Botão de Login no Header (estilo padrão) */
+.btn-login {
+    background: none;
+    color: var(--primary-color);
+    border: 2px solid var(--primary-color);
+    padding: 8px 15px;
+    font-size: 0.9rem;
+    transition: background-color 0.3s ease, color 0.3s ease;
+}
+
+.btn-login:hover {
+    background: var(--primary-color);
+    color: var(--light-text-color);
+}
+
+/* Link de Perfil na Navegação (quando logado) */
+.nav-profile-link {
+    color: var(--text-color);
+    text-decoration: none;
+    font-weight: 500;
+    transition: color 0.3s ease;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+    padding: 8px 15px; /* Ajusta o padding para combinar com o .btn-login */
+    border-radius: 5px;
+    background-color: transparent;
+}
+
+.nav-profile-link:hover {
+    color: var(--primary-color);
+    background-color: rgba(72, 53, 40, 0.1); /* Fundo sutil com transparência da cor primária */
+}
+
+.nav-profile-link i {
+    font-size: 1.2em;
+}
+
+/* Hambúrguer Menu (Escondido por padrão, visível em mobile) */
+.hamburger-menu {
+    display: none; /* Escondido por padrão em desktop */
+    background: none;
+    border: none;
+    font-size: 1.8rem;
+    cursor: pointer;
+    color: var(--primary-color);
+}
+
+/* Hero Section */
+.hero {
+    min-height: calc(100vh - var(--header-height));
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    text-align: center;
+    padding-top: var(--header-height);
+    position: relative;
+    overflow: hidden;
+}
+
+.hero-content {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    justify-content: center;
+    height: 100%;
+    width: 100%;
+    position: relative;
+    z-index: 1;
+    color: var(--light-text-color); /* Texto claro sobre as imagens escuras */
+    text-shadow: 0 0 8px rgba(0,0,0,0.6);
+}
+
+.carousel {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    overflow: hidden;
+}
+
+.carousel-item {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    opacity: 0;
+    transition: opacity 1s ease-in-out;
+}
+
+.carousel-item.active {
+    opacity: 1;
+}
+
+.carousel-item img {
+    width: 100%;
+    height: 100%;
+    object-fit: cover;
+    filter: brightness(60%); /* Escurece um pouco as imagens para o texto se destacar */
+}
+
+.hero-text {
+    position: relative;
+    z-index: 2;
+    padding: 20px;
+    max-width: 800px;
+}
+
+.hero-text h2 {
+    font-size: 3.5rem;
+    margin-bottom: 15px;
+    line-height: 1.2;
+}
+
+.hero-text p {
+    font-size: 1.5rem;
+    margin-bottom: 30px;
+}
+
+/* Footer */
+.footer {
+    background: var(--text-color); /* Cor principal para fundo (escuro) */
+    color: var(--light-text-color); /* Texto claro no footer */
+    text-align: center;
+    padding: 20px 0;
+    margin-top: 50px;
+}
+
+/* Modal */
+.modal {
+    display: none; /* Escondido por padrão */
+    position: fixed;
+    z-index: 2000;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    overflow: auto;
+    background-color: rgba(0,0,0,0.6);
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.modal-content {
+    background-color: #fff;
+    margin: auto;
+    padding: 30px;
+    border-radius: 8px;
+    width: 90%;
+    max-width: 500px;
+    box-shadow: 0 5px 15px rgba(0,0,0,0.3);
+    text-align: center;
+    position: relative;
+}
+
+.modal-content h2 {
+    color: var(--primary-color);
+    margin-bottom: 15px;
+    font-size: 2rem;
+}
+
+.modal-content p {
+    font-size: 1.1rem;
+    line-height: 1.8;
+    margin-bottom: 25px;
+}
+
+.close-button {
+    color: #aaa;
+    position: absolute;
+    top: 10px;
+    right: 20px;
+    font-size: 28px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.close-button:hover,
+.close-button:focus {
+    color: #333;
+    text-decoration: none;
+}
+
+.btn-modal-close {
+    background: var(--secondary-color);
+    color: var(--text-color); /* Cor do texto principal */
+    padding: 10px 20px;
+    border: none;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1rem;
+    transition: background-color 0.3s ease;
+}
+
+.btn-modal-close:hover {
+    background: darken(var(--secondary-color), 10%);
+}
+
+/* Seção "Sobre Nós" */
+.about-us {
+    padding: 60px 0;
+    background-color: var(--background-color);
+    text-align: center;
+    position: relative;
+    overflow: hidden;
+}
+
+.about-us h2 {
+    font-size: 2.8em;
+    color: var(--text-color);
+    margin-bottom: 40px;
+    position: relative;
+}
+
+.about-us h2::after {
+    content: '';
+    display: block;
+    width: 80px;
+    height: 4px;
+    background-color: var(--primary-color);
+    margin: 15px auto 0;
+    border-radius: 2px;
+}
+
+.about-cards {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+    gap: 30px;
+    margin-top: 40px;
+    margin-bottom: 30px;
+}
+
+.card {
+    background-color: #fff;
+    border-radius: 10px;
+    padding: 30px;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.08);
+    text-align: center;
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    border: 1px solid #eee;
+}
+
+.card:hover {
+    transform: translateY(-5px);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.12);
+}
+
+.icon-card {
+    font-size: 3.5em;
+    color: var(--primary-color);
+    margin-bottom: 20px;
+}
+
+.card h3 {
+    font-size: 1.8em;
+    color: var(--primary-color);
+    margin-bottom: 15px;
+}
+
+.card p {
+    font-size: 1em;
+    line-height: 1.7;
+    color: var(--text-color); /* Texto padrão */
+}
+
+.card p strong {
+    color: var(--primary-color);
+}
+
+.about-final-text {
+    font-size: 1.2em;
+    color: var(--text-color);
+    margin-top: 40px;
+    font-weight: 500;
+}
+
+
+/* Responsividade Global */
+@media (max-width: 768px) {
+    .header .container {
+        flex-wrap: wrap;
+        padding: 0 15px;
+        justify-content: space-between;
+    }
+
+    .logo {
+        flex-grow: 0;
+        text-align: left;
+    }
+
+    .nav {
+        order: 1;
+        margin-left: auto;
+    }
+
+    .nav-list {
+        display: none;
+        flex-direction: column;
+        width: 100%;
+        position: absolute;
+        top: var(--header-height);
+        left: 0;
+        background: #fff; /* Fundo branco para o menu mobile */
+        box-shadow: 0 5px 10px rgba(0,0,0,0.1);
+        padding: 15px 0;
+        text-align: center;
+        z-index: 999;
+    }
+
+    .nav-list.open { /* Classe 'open' é usada pelo JS do hambúrguer */
+        display: flex;
+    }
+
+    .nav-list li {
+        width: 100%;
+        margin: 10px 0;
+    }
+
+    .nav-list li a {
+        color: var(--text-color); /* Cor do texto no menu mobile */
+        padding: 10px 20px;
+        width: 100%;
+        display: block;
+    }
+
+    .nav-list li a:hover {
+        background-color: var(--background-color); /* Fundo de hover no menu mobile */
+    }
+
+    .hamburger-menu {
+        display: block;
+        background: none;
+        border: none;
+        font-size: 1.8rem;
+        cursor: pointer;
+        color: var(--primary-color);
+        padding: 0;
+    }
+
+    /* Estilos específicos para o link de perfil/login no menu mobile */
+    .nav-list #profileLinkContainer .nav-profile-link,
+    .nav-list #profileLinkContainer .btn-login {
+        width: calc(100% - 40px);
+        margin: 10px 20px;
+        text-align: center;
+        justify-content: center;
+    }
+    
+    /* Hero Section responsividade */
+    .hero-text h2 {
+        font-size: 2.5rem;
+    }
+
+    .hero-text p {
+        font-size: 1.2rem;
+    }
+
+    .btn-primary {
+        font-size: 1.1rem;
+        padding: 12px 25px;
+    }
+
+    /* Modal responsividade */
+    .modal-content {
+        padding: 20px;
+        width: 95%;
+    }
+
+    .modal-content h2 {
+        font-size: 1.8rem;
+    }
+
+    .modal-content p {
+        font-size: 1rem;
+    }
+
+    /* Seção "Sobre Nós" responsividade */
+    .about-cards {
+        grid-template-columns: 1fr;
+        gap: 20px;
+    }
+
+    .about-us h2 {
+        font-size: 2.2em;
+    }
+
+    .card {
+        padding: 25px;
+    }
+
+    .icon-card {
+        font-size: 3em;
+    }
+
+    .card h3 {
+        font-size: 1.6em;
+    }
+
+    .about-final-text {
+        font-size: 1.1em;
+    }
+}

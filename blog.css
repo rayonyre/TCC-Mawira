@@ -1,0 +1,655 @@
+/* --- Variáveis (garanta que estas estejam em um arquivo global como style.css ou variables.css) --- */
+:root {
+    --primary-color: #8B4513; /* SaddleBrown */
+    --primary-hover-color: #A0522D; /* Sienna */
+    --background-color: #F7EBDD;
+    --text-color: #333;
+    --light-text-color: #ffffff;
+    --border-color: #ddd;
+    --header-height: 60px;
+
+    --smooth-transition: all 0.3s ease-in-out;
+    --shadow-light: 0 4px 15px rgba(0, 0, 0, 0.08);
+    --shadow-medium: 0 6px 20px rgba(0, 0, 0, 0.12);
+    --shadow-dark: 0 8px 25px rgba(0, 0, 0, 0.15);
+    --border-radius-large: 12px;
+    --border-radius-medium: 8px;
+    --border-radius-small: 5px;
+    --secondary-color: #D2B48C; /* Exemplo de cor secundária */
+
+    --star-filled-color: #FFD700; /* Cor para estrelas preenchidas (Gold) */
+    --star-empty-color: #ccc; /* Cor para estrelas vazias */
+}
+
+/* Estilos específicos para a página de Blog */
+.blog-page-content {
+    padding-top: calc(var(--header-height) + 40px); /* Espaçamento do header fixo + um pouco mais */
+    padding-bottom: 50px;
+    background-color: var(--background-color);
+    min-height: calc(100vh - var(--header-height) - 70px); /* Ajusta a altura da tela */
+    display: flex; /* Para layout de duas colunas (conteúdo e sidebar) */
+    gap: 30px; /* Espaço entre a seção de posts e a sidebar */
+    align-items: flex-start; /* Alinha o conteúdo ao topo */
+}
+
+/* Seção de Posts */
+.blog-posts {
+    flex: 3; /* Ocupa mais espaço */
+    max-width: calc(100% - 250px - 30px); /* Ajusta para sidebar e gap */
+}
+
+.blog-posts h2 {
+    font-size: 2.5rem;
+    color: var(--primary-color);
+    margin-bottom: 25px;
+    text-align: center;
+}
+
+/* Search Bar */
+.search-bar {
+    display: flex;
+    margin-bottom: 40px;
+    border: 1px solid var(--border-color);
+    border-radius: var(--border-radius-medium);
+    overflow: hidden;
+    box-shadow: var(--shadow-light);
+}
+
+.search-bar input {
+    flex-grow: 1;
+    padding: 12px 15px;
+    border: none;
+    font-size: 1em;
+    outline: none;
+}
+
+.search-bar button {
+    background-color: var(--primary-color);
+    color: white;
+    border: none;
+    padding: 12px 20px;
+    cursor: pointer;
+    font-size: 1em;
+    transition: var(--smooth-transition);
+}
+
+.search-bar button:hover {
+    background-color: var(--primary-hover-color);
+}
+
+/* Post List Grid */
+.post-list {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(320px, 1fr)); /* Ajustado minmax */
+    gap: 30px; /* Espaço entre os cards */
+    justify-content: center;
+}
+
+.post-card {
+    background-color: #fff;
+    border-radius: var(--border-radius-large); /* Bordas mais arredondadas */
+    box-shadow: var(--shadow-medium); /* Sombra mais visível */
+    overflow: hidden; /* Garante que a imagem siga o border-radius */
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    display: flex;
+    flex-direction: column; /* Para alinhar conteúdo verticalmente */
+}
+
+.post-card:hover {
+    transform: translateY(-8px); /* Efeito de elevação mais pronunciado */
+    box-shadow: var(--shadow-dark);
+}
+
+.post-card-image { /* Nova classe para a imagem do card */
+    width: 100%;
+    height: 200px; /* Altura fixa para as imagens dos cards */
+    object-fit: cover; /* Garante que a imagem preencha o espaço */
+}
+
+.post-card h3 {
+    font-size: 1.5rem; /* Tamanho do título do card */
+    color: var(--primary-color);
+    margin: 20px 20px 10px; /* Padding interno */
+    line-height: 1.3;
+    font-weight: 600;
+}
+
+.post-card h3 a { /* Estilo para o link do título */
+    text-decoration: none;
+    color: inherit; /* Herda a cor do h3 */
+    transition: color 0.3s ease;
+}
+
+.post-card h3 a:hover {
+    color: var(--primary-hover-color);
+}
+
+.post-meta {
+    font-size: 0.9em;
+    color: var(--light-text-color);
+    margin: 0 20px 15px;
+}
+
+/* Estilos para a avaliação média no card do post */
+.post-card-rating {
+    font-size: 0.95em;
+    color: var(--text-color);
+    margin: -10px 20px 15px; /* Ajuste a margem para encaixar bem */
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    font-weight: 600;
+}
+
+.post-card-rating .fas.fa-star {
+    color: var(--star-filled-color);
+}
+
+.post-card-rating.no-rating {
+    color: var(--light-text-color);
+    font-style: italic;
+    font-weight: normal;
+}
+
+
+.post-card p {
+    font-size: 1em;
+    color: var(--text-color);
+    line-height: 1.6;
+    margin: 0 20px 25px; /* Padding interno */
+    flex-grow: 1; /* Faz o parágrafo crescer e empurrar o botão para baixo */
+}
+
+.post-card .btn {
+    margin: 0 20px 20px; /* Padding para o botão */
+    align-self: flex-start; /* Alinha o botão à esquerda dentro do flex container */
+    padding: 10px 20px;
+    font-size: 0.95rem;
+    border-radius: var(--border-radius-medium);
+}
+
+/* Message when no posts are found */
+.no-posts-found {
+    text-align: center;
+    color: var(--light-text-color);
+    font-style: italic;
+    padding: 40px;
+    background-color: #fefefe;
+    border-radius: var(--border-radius-medium);
+    margin-top: 20px;
+    box-shadow: inset 0 0 8px rgba(0,0,0,0.03);
+    border: 1px dashed var(--border-color);
+    grid-column: 1 / -1; /* Ocupa todas as colunas no grid */
+}
+
+/* Sidebar */
+.sidebar {
+    flex: 1; /* Ocupa menos espaço */
+    max-width: 250px; /* Largura máxima da sidebar */
+    background-color: #fff;
+    padding: 25px;
+    border-radius: var(--border-radius-large);
+    box-shadow: var(--shadow-light);
+    height: fit-content; /* Ajusta a altura ao conteúdo */
+    position: sticky; /* Fica fixo ao rolar */
+    top: calc(var(--header-height) + 40px); /* Alinha com o topo da seção principal */
+}
+
+.sidebar h3 {
+    font-size: 1.4rem;
+    color: var(--primary-color);
+    margin-bottom: 20px;
+    border-bottom: 2px solid var(--border-color);
+    padding-bottom: 10px;
+}
+
+.categories {
+    list-style: none;
+    padding: 0;
+}
+
+.categories li {
+    margin-bottom: 10px;
+}
+
+.categories a {
+    display: block;
+    padding: 8px 12px;
+    text-decoration: none;
+    color: var(--text-color);
+    background-color: #f9f9f9;
+    border-radius: var(--border-radius-small);
+    transition: var(--smooth-transition);
+    font-weight: 500;
+}
+
+.categories a:hover {
+    background-color: var(--primary-color);
+    color: white;
+}
+
+.categories a.active {
+    background-color: var(--primary-color);
+    color: white;
+    font-weight: 700;
+    box-shadow: var(--shadow-light);
+}
+
+/* --- Estilos para o Post Individual (Single Post View) --- */
+.single-post-view {
+    flex: 3; /* Ocupa o mesmo espaço que a lista */
+    max-width: 800px; /* Largura ideal para leitura de artigo */
+    margin: 0 auto; /* Centraliza */
+    text-align: left; /* Conteúdo do artigo alinhado à esquerda */
+    padding-right: 0px; /* Remove padding lateral pois o post-full ja tem */
+    padding-left: 0px; /* Remove padding lateral pois o post-full ja tem */
+}
+
+.single-post-view .back-button {
+    margin-bottom: 30px; /* Espaço abaixo do botão de voltar */
+    font-size: 1rem;
+    padding: 10px 20px;
+    display: flex;
+    align-items: center;
+    gap: 10px;
+}
+
+.post-full {
+    background-color: #fff;
+    padding: 40px; /* Bom padding para o conteúdo do artigo */
+    border-radius: var(--border-radius-large);
+    box-shadow: var(--shadow-medium);
+    border: 1px solid var(--border-color);
+}
+
+.post-full-image {
+    width: 100%;
+    height: auto; /* Altura automática para manter proporção */
+    max-height: 400px; /* Limite de altura para a imagem de destaque */
+    object-fit: cover;
+    border-radius: var(--border-radius-medium);
+    margin-bottom: 30px;
+}
+
+#singlePostTitle {
+    font-size: 3rem; /* Título maior para o post */
+    color: var(--primary-color);
+    margin-bottom: 15px;
+    line-height: 1.2;
+    font-weight: 700;
+}
+
+#singlePostMeta {
+    font-size: 1em;
+    color: var(--light-text-color);
+    margin-bottom: 30px;
+    border-bottom: 1px solid var(--border-color);
+    padding-bottom: 10px;
+}
+
+.post-full-content {
+    font-size: 1.1rem;
+    line-height: 1.8;
+    color: var(--text-color);
+}
+
+.post-full-content h3 { /* Estilos para sub-títulos dentro do conteúdo */
+    font-size: 1.8rem;
+    color: var(--primary-color);
+    margin-top: 40px;
+    margin-bottom: 20px;
+    border-bottom: 2px solid var(--primary-color);
+    padding-bottom: 5px;
+}
+
+.post-full-content p {
+    margin-bottom: 1em; /* Espaço entre parágrafos */
+}
+
+.post-full-content ul,
+.post-full-content ol {
+    margin-left: 25px; /* Indentação para listas */
+    margin-bottom: 1em;
+}
+
+.post-full-content li {
+    margin-bottom: 0.5em;
+}
+
+.post-full-content strong {
+    font-weight: 700;
+    color: var(--primary-color); /* Destaque para texto forte */
+}
+
+/* --- Estilos para Comentários e Avaliações --- */
+.comments-section {
+    margin-top: 60px; /* Espaço maior antes da seção de comentários */
+    padding-top: 40px;
+    border-top: 1px solid var(--border-color); /* Separador visual */
+    text-align: left;
+}
+
+.comments-section h3 {
+    font-size: 2.2rem;
+    color: var(--primary-color);
+    margin-bottom: 30px;
+    border-bottom: 4px solid var(--primary-color);
+    padding-bottom: 10px;
+    display: inline-block;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 0.8px;
+}
+
+/* Resumo das avaliações */
+.ratings-summary {
+    background-color: #fcfcfc;
+    border: 1px solid var(--border-color);
+    border-radius: var(--border-radius-medium);
+    padding: 25px;
+    margin-bottom: 30px;
+    box-shadow: var(--shadow-light);
+    text-align: center;
+}
+
+.ratings-summary h4 {
+    font-size: 1.5rem;
+    color: var(--text-color);
+    margin-bottom: 15px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    gap: 10px;
+}
+
+.star-rating-display {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    gap: 5px;
+    font-size: 1.8rem; /* Estrelas maiores para a média */
+    color: var(--star-empty-color);
+}
+
+.star-rating-display .fas.fa-star.filled {
+    color: var(--star-filled-color);
+}
+.star-rating-display .fas.fa-star-half-alt {
+    color: var(--star-filled-color);
+}
+
+/* Formulário de Comentários */
+.comment-form-container {
+    background-color: #fff;
+    border: 1px solid var(--border-color);
+    border-radius: var(--border-radius-medium);
+    padding: 30px;
+    margin-bottom: 40px;
+    box-shadow: var(--shadow-light);
+}
+
+.comment-form-container h4 {
+    font-size: 1.6rem;
+    color: var(--primary-color);
+    margin-bottom: 25px;
+    text-align: center;
+}
+
+.comment-form .form-group {
+    margin-bottom: 20px;
+}
+
+.comment-form label {
+    display: block;
+    font-weight: 600;
+    color: var(--text-color);
+    margin-bottom: 8px;
+    font-size: 1em;
+}
+
+.comment-form input[type="text"],
+.comment-form textarea {
+    width: calc(100% - 24px); /* Ajustado para padding */
+    padding: 12px;
+    border: 1px solid var(--border-color);
+    border-radius: var(--border-radius-small);
+    font-size: 1em;
+    color: var(--text-color);
+    transition: border-color 0.3s ease;
+    box-sizing: border-box;
+}
+
+.comment-form textarea {
+    resize: vertical; /* Permite redimensionar verticalmente */
+}
+
+.comment-form input[type="text"]:focus,
+.comment-form textarea:focus {
+    border-color: var(--primary-color);
+    outline: none;
+    box-shadow: 0 0 0 3px rgba(139, 69, 19, 0.1);
+}
+
+/* Estrelas Editáveis para Avaliação */
+.star-rating.editable {
+    display: flex;
+    gap: 5px;
+    font-size: 1.8rem;
+    cursor: pointer;
+    justify-content: center; /* Centraliza as estrelas no formulário */
+}
+
+.star-rating.editable .fas.fa-star,
+.star-rating.editable .far.fa-star { /* Ambos os ícones (far para inicial, fas para cheio) */
+    color: var(--star-empty-color); /* Cor padrão para estrelas não preenchidas */
+    transition: color 0.2s ease, transform 0.2s ease;
+}
+
+.star-rating.editable .fas.fa-star.filled {
+    color: var(--star-filled-color); /* Cor para estrelas cheias */
+}
+
+.star-rating.editable .fas.fa-star.hovered {
+    color: var(--star-filled-color);
+    transform: scale(1.1); /* Efeito de zoom no hover */
+}
+
+
+.comment-form .btn-primary {
+    display: block;
+    width: 100%;
+    padding: 15px;
+    font-size: 1.1rem;
+    margin-top: 25px;
+}
+
+/* Lista de Comentários */
+.comments-list-container {
+    background-color: #fcfcfc;
+    border: 1px solid var(--border-color);
+    border-radius: var(--border-radius-medium);
+    padding: 30px;
+    box-shadow: var(--shadow-light);
+}
+
+.comments-list-container h4 {
+    font-size: 1.6rem;
+    color: var(--primary-color);
+    margin-bottom: 25px;
+    text-align: center;
+}
+
+.comments-list {
+    list-style: none;
+    padding: 0;
+}
+
+.comment-item {
+    background-color: #fff;
+    border: 1px solid #eee;
+    border-radius: var(--border-radius-medium);
+    padding: 20px;
+    margin-bottom: 20px;
+    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.05);
+}
+
+.comment-item:last-child {
+    margin-bottom: 0;
+}
+
+.comment-header {
+    display: flex;
+    align-items: center;
+    gap: 10px;
+    margin-bottom: 10px;
+    flex-wrap: wrap; /* Para envolver em mobile */
+}
+
+.comment-author {
+    font-weight: 700;
+    color: var(--primary-color);
+    font-size: 1.1em;
+}
+
+.comment-rating-stars {
+    display: flex;
+    gap: 3px;
+    font-size: 1em; /* Tamanho das estrelas no comentário individual */
+    color: var(--star-empty-color);
+}
+
+.comment-rating-stars .fas.fa-star {
+    color: var(--star-filled-color);
+}
+.comment-rating-stars .fas.fa-star-half-alt {
+    color: var(--star-filled-color);
+}
+
+
+.comment-date {
+    font-size: 0.85em;
+    color: var(--light-text-color);
+    margin-left: auto; /* Empurra a data para a direita */
+    white-space: nowrap;
+}
+
+.comment-text {
+    font-size: 1em;
+    color: var(--text-color);
+    line-height: 1.6;
+    margin-top: 0;
+}
+
+.no-comments-message {
+    text-align: center;
+    color: var(--light-text-color);
+    font-style: italic;
+    padding: 30px;
+    background-color: #fefefe;
+    border-radius: var(--border-radius-medium);
+    border: 1px dashed var(--border-color);
+}
+
+
+/* --- Responsividade (Ajustes para a nova seção) --- */
+@media (max-width: 992px) {
+    /* (manter ajustes gerais do blog.css) */
+    .comments-section {
+        margin-top: 40px;
+        padding-top: 30px;
+    }
+    .comments-section h3 {
+        font-size: 1.8rem;
+        margin-bottom: 20px;
+    }
+    .ratings-summary h4 {
+        font-size: 1.3rem;
+    }
+    .star-rating-display {
+        font-size: 1.5rem;
+    }
+    .comment-form-container, .comments-list-container {
+        padding: 20px;
+    }
+    .comment-form-container h4, .comments-list-container h4 {
+        font-size: 1.4rem;
+    }
+    .comment-rating.editable {
+        font-size: 1.5rem;
+    }
+    .comment-item {
+        padding: 15px;
+    }
+    .comment-author {
+        font-size: 1em;
+    }
+    .comment-date {
+        margin-left: 0; /* Alinha a data abaixo do autor em mobile */
+        width: 100%;
+        text-align: left;
+    }
+}
+
+@media (max-width: 768px) {
+    /* (manter ajustes gerais do blog.css) */
+    .comments-section {
+        margin-top: 30px;
+        padding-top: 20px;
+    }
+    .comments-section h3 {
+        font-size: 1.6rem;
+    }
+    .ratings-summary h4 {
+        font-size: 1.1rem;
+        flex-direction: column; /* Empilha o texto com a média e contagem */
+        text-align: center;
+        gap: 5px;
+    }
+    .star-rating-display {
+        font-size: 1.3rem;
+    }
+    .comment-form-container, .comments-list-container {
+        padding: 15px;
+    }
+    .comment-form-container h4, .comments-list-container h4 {
+        font-size: 1.2rem;
+    }
+    .comment-form label, .comment-form input, .comment-form textarea {
+        font-size: 0.95em;
+    }
+    .comment-form .btn-primary {
+        padding: 12px;
+        font-size: 1rem;
+    }
+    .star-rating.editable {
+        font-size: 1.3rem;
+    }
+    .comment-item {
+        padding: 12px;
+    }
+    .comment-header {
+        flex-direction: column;
+        align-items: flex-start;
+        gap: 5px;
+    }
+    .comment-date {
+        margin-left: 0;
+        text-align: left;
+    }
+}
+
+@media (max-width: 480px) {
+    /* (manter ajustes gerais do blog.css) */
+    .comments-section h3 {
+        font-size: 1.4rem;
+    }
+    .ratings-summary {
+        padding: 15px;
+    }
+    .ratings-summary h4 {
+        font-size: 1rem;
+    }
+    .star-rating-display {
+        font-size: 1.1rem;
+    }
+}
